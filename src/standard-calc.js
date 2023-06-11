@@ -1,8 +1,4 @@
-'use strict';
-
 const calculatorHistory = document.querySelector('#calculatorHistory');
-
-const displayOption = document.querySelector('#displayOption');
 
 const mainPanel = document.querySelector('#mainPanel');
 
@@ -20,30 +16,53 @@ const clearLastIcon =
   '<path d="M5,0l-2.14648,2.14649l-2.14648,-2.14649l-0.707032,0.707032l2.14648,2.14648l-2.14648,2.14648l0.707032,0.707032l2.14648,-2.14649l2.14648,2.14649l0.707032,-0.707032l-2.14649,-2.14648l2.14649,-2.14648Z" transform="translate(6.14648, 7.14648)" fill="white"></path>' +
   '</svg>';
 
-let btnObj = [
+const btnObj = [
   { id: 'percent', class: 'percentMath', text: '%' },
+
   { id: 'piSymbol', class: 'symbol', value: '3.141592', text: '𝝅' },
+
   { id: 'clearAll', class: 'clear', text: 'c' },
+
   { id: 'clearLast', class: 'clear' },
+
   { id: 'fraction', class: 'fractionMath', text: '⅟' },
+
   { id: 'squared', class: 'squaredMath', text: '×²' },
+
   { id: 'symbolMathRoot', class: 'symbol', text: '√' },
+
   { id: 'divisionSign', class: 'operator', value: '/', text: '÷' },
+
   { id: 'num7', class: 'number', value: '7', text: '7' },
+
   { id: 'num8', class: 'number', value: '8', text: '8' },
+
   { id: 'num9', class: 'number', value: '9', text: '9' },
+
   { id: 'multiplicationSign', class: 'operator', value: '*', text: '×' },
+
   { id: 'num4', class: 'number', value: '4', text: '4' },
+
   { id: 'num5', class: 'number', value: '5', text: '5' },
+
   { id: 'num6', class: 'number', value: '6', text: '6' },
+
   { id: 'subtractionSign', class: 'operator', value: '-', text: '-' },
+
   { id: 'num1', class: 'number', value: '1', text: '1' },
+
   { id: 'num2', class: 'number', value: '2', text: '2' },
+
   { id: 'num3', class: 'number', value: '3', text: '3' },
+
   { id: 'additionSign', class: 'operator', value: '+', text: '+' },
+
   { id: 'num0', class: 'numberZero', value: '0', text: '0' },
+
   { id: 'doubleZero', class: 'numberDoubleZero', value: '00', text: '00' },
+
   { id: 'commaSign', class: 'numberDoubleZero', text: ',' },
+  
   { id: 'equalSign', class: 'equal', text: '=' },
 ];
 
@@ -93,7 +112,7 @@ const clearAll = () => {
 
 const percent = () => {
   if (secondNumActive === true) {
-    currNum = currNum / 100;
+    currNum /= 100;
     currentNumberShow.innerText = currNum.toString().replace('.', ',');
   }
 };
@@ -105,7 +124,7 @@ const fraction = () => {
   }
 };
 const squared = () => {
-  currNum = Math.pow(currNum, 2);
+  currNum = currNum ** 2;
   currentNumberShow.innerText = currNum;
 };
 const MathRoot = () => {
@@ -117,8 +136,8 @@ const showResult = () => {
   if (prevNum === '' || currNum === '') return;
 
   previousNumberShow.innerText += (' ' + currNum + ' =').replace('.', ',');
-  let prevDecimal = new Decimal(prevNum);
-  let currDecimal = new Decimal(currNum);
+  const prevDecimal = new Decimal(prevNum);
+  const currDecimal = new Decimal(currNum);
 
   let result;
   switch (mathSign) {
@@ -151,7 +170,7 @@ const showResult = () => {
 
   const newHistoryItem = document.createElement('li');
 
-  let resultHistory = result;
+  const resultHistory = result;
   newHistoryItem.innerHTML += `${previousNumberShow.innerHTML.replace(
     '.',
     ',',
@@ -165,7 +184,7 @@ function clearHistory() {
   if (history.textContent === '') {
     historyBtnClear.classList.remove('active');
   }
-}
+};
 
 document.querySelector('#mainPanel').addEventListener('click', (el) => {
   if (el.target.className === 'operator') {
