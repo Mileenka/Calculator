@@ -327,10 +327,9 @@ const clearHistory = () => {
 
 document.querySelector('#mainPanel').addEventListener('click', (el) => {
   if (el.target.className === 'operator') {
-    previousNumberShow.innerText =
-      currentNumberShow.innerText +
+    previousNumberShow.innerText = `${currentNumberShow.innerText} +
       ' ' +
-      el.target.value.toString().replace('*', '×').replace('/', '÷');
+      ${el.target.value.toString().replace('*', '×').replace('/', '÷')}`;
     prevNum = currNum;
     mathSign = el.target.value;
     secondNumInProgress = true;
