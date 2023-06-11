@@ -240,7 +240,7 @@ const showResult = () => {
       break;
     case '/':
       result = prevDecimal.dividedBy(currDecimal);
-      default:
+    default:
   }
 
   const decimalPlaces = result.decimalPlaces();
@@ -260,7 +260,10 @@ const showResult = () => {
   const newHistoryItem = document.createElement('li');
 
   const resultHistory = result;
-  newHistoryItem.innerHTML += `${previousNumberShow.innerHTML.replace('.', ',')} ${resultHistory}`;
+  newHistoryItem.innerHTML += `${previousNumberShow.innerHTML.replace(
+    '.',
+    ',',
+  )} ${resultHistory}`;
   newHistoryItem.classList.add('history-item');
   history.appendChild(newHistoryItem);
 };
@@ -270,12 +273,14 @@ const clearHistory = () => {
   if (history.textContent === '') {
     historyBtnClear.classList.remove('active');
   }
-}
+};
 
 document.querySelector('#mainPanel').addEventListener('click', (el) => {
   if (el.target.className === 'operator') {
     previousNumberShow.innerText =
-      currentNumberShow.innerText + ' ' + el.target.value.toString().replace('*', '×').replace('/', '÷');
+      currentNumberShow.innerText +
+      ' ' +
+      el.target.value.toString().replace('*', '×').replace('/', '÷');
     prevNum = currNum;
     mathSign = el.target.value;
     secondNumInProgress = true;
@@ -292,7 +297,7 @@ document.querySelector('#mainPanel').addEventListener('click', (el) => {
   }
 
   if (el.target.id === 'doubleZero' && currNum !== '0') {
-      setNumber(el.target.value);
+    setNumber(el.target.value);
   }
 
   if (el.target.id === 'commaSign' && commaSignWasUsed !== true) {
