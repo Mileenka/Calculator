@@ -18,79 +18,140 @@ const clearLastIcon =
 
 const btnObj = [
   {
-    id: 'percent', class: 'percentMath', text: '%'
+    id: 'percent',
+    class: 'percentMath',
+    text: '%',
   },
   {
-    id: 'piSymbol', class: 'symbol', value: '3.141592', text: '𝝅'
+    id: 'piSymbol',
+    class: 'symbol',
+    value: '3.141592',
+    text: '𝝅',
   },
   {
-    id: 'clearAll', class: 'clear', text: 'c'
+    id: 'clearAll',
+    class: 'clear',
+    text: 'c',
   },
   {
-    id: 'clearLast', class: 'clear'
+    id: 'clearLast',
+    class: 'clear',
   },
   {
-    id: 'fraction', class: 'fractionMath', text: '⅟'
+    id: 'fraction',
+    class: 'fractionMath',
+    text: '⅟',
   },
   {
-    id: 'squared', class: 'squaredMath', text: '×²'
+    id: 'squared',
+    class: 'squaredMath',
+    text: '×²',
   },
   {
-    id: 'symbolMathRoot', class: 'symbol', text: '√'
+    id: 'symbolMathRoot',
+    class: 'symbol',
+    text: '√',
   },
   {
-    id: 'divisionSign', class: 'operator', value: '/', text: '÷'
-  }
-  ,
-  {
-    id: 'num7', class: 'number', value: '7', text: '7'
+    id: 'divisionSign',
+    class: 'operator',
+    value: '/',
+    text: '÷',
   },
   {
-    id: 'num8', class: 'number', value: '8', text: '8'
+    id: 'num7',
+    class: 'number',
+    value: '7',
+    text: '7',
   },
   {
-    id: 'num9', class: 'number', value: '9', text: '9'
+    id: 'num8',
+    class: 'number',
+    value: '8',
+    text: '8',
   },
   {
-    id: 'multiplicationSign', class: 'operator', value: '*', text: '×'
+    id: 'num9',
+    class: 'number',
+    value: '9',
+    text: '9',
   },
   {
-    id: 'num4', class: 'number', value: '4', text: '4'
+    id: 'multiplicationSign',
+    class: 'operator',
+    value: '*',
+    text: '×',
   },
   {
-    id: 'num5', class: 'number', value: '5', text: '5'
+    id: 'num4',
+    class: 'number',
+    value: '4',
+    text: '4',
   },
   {
-    id: 'num6', class: 'number', value: '6', text: '6'
+    id: 'num5',
+    class: 'number',
+    value: '5',
+    text: '5',
   },
   {
-    id: 'subtractionSign', class: 'operator', value: '-', text: '-'
+    id: 'num6',
+    class: 'number',
+    value: '6',
+    text: '6',
   },
   {
-    id: 'num1', class: 'number', value: '1', text: '1'
+    id: 'subtractionSign',
+    class: 'operator',
+    value: '-',
+    text: '-',
   },
   {
-    id: 'num2', class: 'number', value: '2', text: '2'
+    id: 'num1',
+    class: 'number',
+    value: '1',
+    text: '1',
   },
   {
-    id: 'num3', class: 'number', value: '3', text: '3'
+    id: 'num2',
+    class: 'number',
+    value: '2',
+    text: '2',
   },
   {
-    id: 'additionSign', class: 'operator', value: '+', text: '+'
+    id: 'num3',
+    class: 'number',
+    value: '3',
+    text: '3',
   },
   {
-    id: 'num0', class: 'numberZero', value: '0', text: '0'
+    id: 'additionSign',
+    class: 'operator',
+    value: '+',
+    text: '+',
   },
   {
-    id: 'doubleZero', class: 'numberDoubleZero', value: '00', text: '00'
-
+    id: 'num0',
+    class: 'numberZero',
+    value: '0',
+    text: '0',
   },
   {
-    id: 'commaSign', class: 'numberDoubleZero', text: ','
+    id: 'doubleZero',
+    class: 'numberDoubleZero',
+    value: '00',
+    text: '00',
   },
   {
-    id: 'equalSign', class: 'equal', text: '='
-  }
+    id: 'commaSign',
+    class: 'numberDoubleZero',
+    text: ',',
+  },
+  {
+    id: 'equalSign',
+    class: 'equal',
+    text: '=',
+  },
 ];
 
 btnObj.forEach((btn) => {
@@ -198,7 +259,10 @@ const showResult = () => {
   const newHistoryItem = document.createElement('li');
 
   const resultHistory = result;
-  newHistoryItem.innerHTML += `${previousNumberShow.innerHTML.replace('.', ',')} ${resultHistory}`;
+  newHistoryItem.innerHTML += `${previousNumberShow.innerHTML.replace(
+    '.',
+    ',',
+  )} ${resultHistory}`;
   newHistoryItem.classList.add('history-item');
   history.appendChild(newHistoryItem);
 };
