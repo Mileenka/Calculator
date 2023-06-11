@@ -220,47 +220,96 @@ const MathRoot = () => {
   currentNumberShow.innerText = currNum;
 };
 
+// const showResult = () => {
+//   if (prevNum === '' || currNum === '') return;
+
+//   previousNumberShow.innerText += (' ' + currNum + ' =').replace('.', ',');
+//   // const prevDecimal = new Decimal(prevNum);
+//   // const currDecimal = new Decimal(currNum);
+
+//   let result;
+//   switch (mathSign) {
+//     case '+':
+//       result = prevNum + currNum;
+//       break;
+//     case '-':
+//       result = prevNum - currNum;
+//       break;
+//     case '*':
+//       result = prevNum * currNum;
+//       break;
+//     case '/':
+//       result = prevNum / currNum;
+//       break;
+//     default:
+//   }
+
+//   // const decimalPlaces = result.decimalPlaces();
+//   // if (decimalPlaces > 0) {
+//   //   const resultString = result.toFixed(2).replace('.', ',');
+//   //   currentNumberShow.innerText = resultString;
+//   // } else {
+//   //   resultString = result.toFixed(0);
+//   //   currentNumberShow.innerText = resultString;
+//   // }
+
+//   if (result > 0) {
+//     const resultString = result.toFixed(2).replace('.', ',');
+//     currentNumberShow.innerText = resultString;
+//   } else {
+//     resultString = result.toFixed(0);
+//     currentNumberShow.innerText = resultString;
+//   }
+
+//   currNum = result;
+//   commaSignWasUsed = false;
+//   mathSign = '';
+//   prevNum = '';
+
+//   const newHistoryItem = document.createElement('li');
+
+//   const resultHistory = result;
+//   newHistoryItem.innerHTML += `${previousNumberShow.innerHTML.replace(
+//     '.',
+//     ',',
+//   )} ${resultHistory}`;
+//   newHistoryItem.classList.add('history-item');
+//   history.appendChild(newHistoryItem);
+// };
+
 const showResult = () => {
   if (prevNum === '' || currNum === '') return;
 
-  previousNumberShow.innerText += `' ' + ${currNum} + ' ='`.replace('.', ',');
-  // const prevDecimal = new Decimal(prevNum);
-  // const currDecimal = new Decimal(currNum);
+  previousNumberShow.innerText += (' ' + currNum + ' =').replace('.', ',');
 
   let result;
   switch (mathSign) {
     case '+':
-      result = prevNum + currNum;
+      result = parseFloat(prevNum) + parseFloat(currNum);
       break;
     case '-':
-      result = prevNum - currNum;
+      result = parseFloat(prevNum) - parseFloat(currNum);
       break;
     case '*':
-      result = prevNum * currNum;
+      result = parseFloat(prevNum) * parseFloat(currNum);
       break;
     case '/':
-      result = prevNum / currNum;
+      result = parseFloat(prevNum) / parseFloat(currNum);
       break;
     default:
+      return;
   }
 
-  const decimalPlaces = result.decimalPlaces();
-  if (decimalPlaces > 0) {
-    const resultString = result.toFixed(2).replace('.', ',');
-    currentNumberShow.innerText = resultString;
-  } else {
-    resultString = result.toFixed(0);
-    currentNumberShow.innerText = resultString;
-  }
+  const resultString = result.toString().replace('.', ',');
+  currentNumberShow.innerText = resultString;
 
-  currNum = result;
+  currNum = result.toString();
   commaSignWasUsed = false;
   mathSign = '';
   prevNum = '';
 
   const newHistoryItem = document.createElement('li');
-
-  const resultHistory = result;
+  const resultHistory = resultString;
   newHistoryItem.innerHTML += `${previousNumberShow.innerHTML.replace(
     '.',
     ',',
