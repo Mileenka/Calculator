@@ -212,7 +212,7 @@ const fraction = () => {
   }
 };
 const squared = () => {
-  currNum = currNum ** 2;
+  currNum **= 2;
   currentNumberShow.innerText = currNum;
 };
 const MathRoot = () => {
@@ -240,14 +240,15 @@ const showResult = () => {
       break;
     case '/':
       result = prevDecimal.dividedBy(currDecimal);
+      default:
   }
 
-  let decimalPlaces = result.decimalPlaces();
+  const decimalPlaces = result.decimalPlaces();
   if (decimalPlaces > 0) {
-    let resultString = result.toFixed(2).replace('.', ',');
+    const resultString = result.toFixed(2).replace('.', ',');
     currentNumberShow.innerText = resultString;
   } else {
-    let resultString = result.toFixed(0);
+    resultString = result.toFixed(0);
     currentNumberShow.innerText = resultString;
   }
 
@@ -259,15 +260,12 @@ const showResult = () => {
   const newHistoryItem = document.createElement('li');
 
   const resultHistory = result;
-  newHistoryItem.innerHTML += `${previousNumberShow.innerHTML.replace(
-    '.',
-    ',',
-  )} ${resultHistory}`;
+  newHistoryItem.innerHTML += `${previousNumberShow.innerHTML.replace('.', ',')} ${resultHistory}`;
   newHistoryItem.classList.add('history-item');
   history.appendChild(newHistoryItem);
 };
 
-function clearHistory() {
+const clearHistory = () => {
   history.textContent = '';
   if (history.textContent === '') {
     historyBtnClear.classList.remove('active');
@@ -277,9 +275,7 @@ function clearHistory() {
 document.querySelector('#mainPanel').addEventListener('click', (el) => {
   if (el.target.className === 'operator') {
     previousNumberShow.innerText =
-      currentNumberShow.innerText +
-      ' ' +
-      el.target.value.toString().replace('*', '×').replace('/', '÷');
+      currentNumberShow.innerText + ' ' + el.target.value.toString().replace('*', '×').replace('/', '÷');
     prevNum = currNum;
     mathSign = el.target.value;
     secondNumInProgress = true;
@@ -295,18 +291,14 @@ document.querySelector('#mainPanel').addEventListener('click', (el) => {
     setNumber(el.target.value);
   }
 
-  if (el.target.id === 'doubleZero') {
-    if (currNum !== '0') {
+  if (el.target.id === 'doubleZero' && currNum !== '0') {
       setNumber(el.target.value);
-    }
   }
 
-  if (el.target.id === 'commaSign') {
-    if (commaSignWasUsed !== true) {
-      currentNumberShow.innerText += ',';
-      currNum += '.';
-      commaSignWasUsed = true;
-    }
+  if (el.target.id === 'commaSign' && commaSignWasUsed !== true) {
+    currentNumberShow.innerText += ',';
+    currNum += '.';
+    commaSignWasUsed = true;
   }
 
   if (el.target.id === 'clearLast' || el.target.id === 'svgClear') {
