@@ -280,7 +280,9 @@ const MathRoot = () => {
 const showResult = () => {
   if (prevNum === '' || currNum === '') return;
 
-  previousNumberShow.innerText += (' ' + currNum + ' =').replace('.', ',');
+  // previousNumberShow.innerText += (' ' + currNum + ' =').replace('.', ',');
+
+  previousNumberShow.innerText += ` ${currNum.replace('.', ',')} =`;
 
   let result;
   switch (mathSign) {
