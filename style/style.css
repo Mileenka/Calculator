@@ -1,0 +1,317 @@
+@import url(./reset.css);
+@import url(./utilities.css);
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100;300;400;700&display=swap');
+
+:root {
+  --veryDarkGray: rgb(30, 30, 30);
+  --darkGray: rgb(38, 36, 38);
+  --gray: rgb(49, 48, 48);
+  --lightGray: rgb(60, 60, 60);
+  --darkPink: rgb(117, 53, 98);
+}
+
+*,
+::before,
+::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  font-family: 'Lexend Deca', sans-serif;
+  font-size: 10px;
+  background-color: var(--veryDarkGray);
+}
+
+.calculator {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  padding: 0.2rem;
+}
+
+/* Display */
+
+.displayHeader {
+  position: relative;
+  display: flex;
+  height: 10%;
+}
+
+.menu {
+  position: relative;
+}
+
+.menu img {
+  margin: 13px 0 auto 10px;
+}
+
+.calcType {
+  color: white;
+  font-size: 1.3rem;
+  letter-spacing: 0.1rem;
+  margin: 19px;
+}
+
+.historyIcon img {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 2.6rem;
+}
+
+.display {
+  height: 27%;
+  max-height: min-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: white;
+  text-align: right;
+  word-break: break-all;
+  margin-bottom: 10px;
+  padding-right: 5px;
+}
+
+.previousNumber {
+  margin-top: 45px;
+  color: rgb(182, 182, 182);
+  font-size: 1.5rem;
+}
+
+.mathSign {
+  font-size: 22px;
+}
+
+.currentNumber {
+  margin-bottom: 30px;
+  font-size: 2.8rem;
+}
+
+.displayFooter {
+  display: flex;
+  gap: 1px;
+  font-size: 1.1rem;
+  font-weight: 200;
+}
+
+/* Panel */
+
+.panel {
+  height: 62%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  gap: 0.2rem;
+}
+
+.panel button {
+  background-color: var(--lightGray);
+  font-family: 'Lexend Deca', sans-serif;
+  font-size: 1.6rem;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  outline: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.panel .percentMath,
+.panel .operator,
+.panel .symbol,
+.panel .clear,
+.panel .fractionMath,
+.panel .squaredMath {
+  background-color: var(--gray);
+}
+
+.panel .equal {
+  background-color: var(--darkPink);
+}
+
+/* History */
+
+.calculator-history {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 62%;
+  transition: transform 1s;
+  background-color: var(--veryDarkGray);
+  color: var(--darkPink);
+  padding: 15px 15px;
+  font-weight: 400;
+  text-align: center;
+}
+
+.historySlider {
+  transform: translateX(-100%);
+}
+
+.history {
+  list-style: none;
+}
+
+.history-title {
+  font-size: 1.2rem;
+  margin-top: 15px;
+}
+
+hr.history-line {
+  border: 1px solid rgb(136, 115, 135);
+}
+
+.history-item {
+  margin: 20px 0px;
+  font-size: 1.3rem;
+  color: #edd3e6;
+  letter-spacing: 1px;
+  border-bottom: 1px solid rgba(29, 27, 27, 0.233);
+}
+
+.history {
+  list-style: none;
+}
+
+.history-title {
+  padding-bottom: 10px;
+}
+
+.history-btn {
+  position: fixed;
+  right: 2rem;
+  bottom: 1.5rem;
+  margin: 5px auto;
+  padding: 8px;
+  background: var(--darkGray);
+  font-size: 1rem;
+  color: whitesmoke;
+  border-radius: 20px;
+  font-weight: bold;
+  outline: none;
+  border: none;
+  border-right: 4px solid var(--darkPink);
+  border-left: 4px solid var(--darkPink);
+}
+
+.history-btn:hover {
+  transition: all 0.8s;
+  background-color: var(--gray);
+  color: #a24e89;
+  cursor: pointer;
+}
+
+.history-btn.active {
+  display: block;
+}
+
+.history-item {
+  margin: 8px;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  border-bottom: 1px solid rgba(29, 27, 27, 0.233);
+  padding-bottom: 5px;
+}
+
+.displayNone {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .calculator {
+    position: static;
+    width: 60%;
+    padding: 0.2rem;
+  }
+
+  .menu {
+    cursor: pointer;
+  }
+
+  .menu img {
+    width: 2.2rem;
+    height: 2.2rem;
+  }
+
+  .historyIcon img {
+    display: none;
+  }
+
+  .previousNumber {
+    margin-top: 9px;
+    font-size: 1.6rem;
+  }
+
+  .currentNumber {
+    font-size: 3.2rem;
+  }
+
+  .calcType {
+    margin-left: 1.8rem;
+    margin-top: 1.2rem;
+  }
+
+  .panel button:hover {
+    background-color: rgb(73, 73, 73);
+    cursor: pointer;
+  }
+
+  .panel .equal:hover {
+    background-color: #a24e89;
+  }
+
+  .calculator-history {
+    top: 0;
+    right: 0;
+    width: 40%;
+    height: 100vh;
+    transform: translateX(0%);
+  }
+
+  .history-title {
+    font-size: 1.5rem;
+  }
+
+  .history-btn {
+    right: 5rem;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .menu img {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .currentNumber {
+    margin-right: 10px;
+    font-size: 4rem;
+  }
+
+  .previousNumber {
+    margin-right: 10px;
+    margin-top: 25px;
+    font-size: 1.9rem;
+  }
+
+  .calcType {
+    margin-left: 2.7rem;
+    margin-top: 1.5rem;
+    font-size: 1.9rem;
+  }
+
+  .history-title {
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+  }
+
+  .history-item {
+    font-size: 1.5rem;
+  }
+}
