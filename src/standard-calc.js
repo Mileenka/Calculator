@@ -327,9 +327,14 @@ const clearHistory = () => {
 
 document.querySelector('#mainPanel').addEventListener('click', (el) => {
   if (el.target.className === 'operator') {
-    previousNumberShow.innerText = `${currentNumberShow.innerText} +
-      ' ' +
-      ${el.target.value.toString().replace('*', '×').replace('/', '÷')}`;
+    // previousNumberShow.innerText =
+    //   currentNumberShow.innerText +
+    //   ' ' +
+    //   el.target.value.toString().replace('*', '×').replace('/', '÷');
+    previousNumberShow.innerText = `${
+      currentNumberShow.innerText
+    } ${el.target.value.toString().replace('*', '×').replace('/', '÷')}`;
+
     prevNum = currNum;
     mathSign = el.target.value;
     secondNumInProgress = true;
