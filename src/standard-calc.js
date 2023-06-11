@@ -223,23 +223,24 @@ const MathRoot = () => {
 const showResult = () => {
   if (prevNum === '' || currNum === '') return;
 
-  previousNumberShow.innerText += (' ' + currNum + ' =').replace('.', ',');
-  const prevDecimal = new Decimal(prevNum);
-  const currDecimal = new Decimal(currNum);
+  previousNumberShow.innerText += `' ' + ${currNum} + ' ='`.replace('.', ',');
+  // const prevDecimal = new Decimal(prevNum);
+  // const currDecimal = new Decimal(currNum);
 
   let result;
   switch (mathSign) {
     case '+':
-      result = prevDecimal.plus(currDecimal);
+      result = prevNum + currNum;
       break;
     case '-':
-      result = prevDecimal.minus(currDecimal);
+      result = prevNum - currNum;
       break;
     case '*':
-      result = prevDecimal.times(currDecimal);
+      result = prevNum * currNum;
       break;
     case '/':
-      result = prevDecimal.dividedBy(currDecimal);
+      result = prevNum / currNum;
+      break;
     default:
   }
 
