@@ -220,67 +220,8 @@ const MathRoot = () => {
   currentNumberShow.innerText = currNum;
 };
 
-// const showResult = () => {
-//   if (prevNum === '' || currNum === '') return;
-
-//   previousNumberShow.innerText += (' ' + currNum + ' =').replace('.', ',');
-//   // const prevDecimal = new Decimal(prevNum);
-//   // const currDecimal = new Decimal(currNum);
-
-//   let result;
-//   switch (mathSign) {
-//     case '+':
-//       result = prevNum + currNum;
-//       break;
-//     case '-':
-//       result = prevNum - currNum;
-//       break;
-//     case '*':
-//       result = prevNum * currNum;
-//       break;
-//     case '/':
-//       result = prevNum / currNum;
-//       break;
-//     default:
-//   }
-
-//   // const decimalPlaces = result.decimalPlaces();
-//   // if (decimalPlaces > 0) {
-//   //   const resultString = result.toFixed(2).replace('.', ',');
-//   //   currentNumberShow.innerText = resultString;
-//   // } else {
-//   //   resultString = result.toFixed(0);
-//   //   currentNumberShow.innerText = resultString;
-//   // }
-
-//   if (result > 0) {
-//     const resultString = result.toFixed(2).replace('.', ',');
-//     currentNumberShow.innerText = resultString;
-//   } else {
-//     resultString = result.toFixed(0);
-//     currentNumberShow.innerText = resultString;
-//   }
-
-//   currNum = result;
-//   commaSignWasUsed = false;
-//   mathSign = '';
-//   prevNum = '';
-
-//   const newHistoryItem = document.createElement('li');
-
-//   const resultHistory = result;
-//   newHistoryItem.innerHTML += `${previousNumberShow.innerHTML.replace(
-//     '.',
-//     ',',
-//   )} ${resultHistory}`;
-//   newHistoryItem.classList.add('history-item');
-//   history.appendChild(newHistoryItem);
-// };
-
 const showResult = () => {
   if (prevNum === '' || currNum === '') return;
-
-  // previousNumberShow.innerText += (' ' + currNum + ' =').replace('.', ',');
 
   previousNumberShow.innerText += ` ${currNum.replace('.', ',')} =`;
 
@@ -327,84 +268,78 @@ const clearHistory = () => {
   }
 };
 
-document.querySelector('#mainPanel').addEventListener('click', (el) => {
+document
+  .querySelector('#mainPanel')
+  .addEventListener('click', handlePanelClick);
+
+document
+  .querySelector('#hourglass')
+  .addEventListener('click', toggleHistorySlider);
+
+historyBtnClear.addEventListener('click', clearHistory);
+
+function handlePanelClick(el) {
   if (el.target.className === 'operator') {
-    // previousNumberShow.innerText =
-    //   currentNumberShow.innerText +
-    //   ' ' +
-    //   el.target.value.toString().replace('*', '×').replace('/', '÷');
-    previousNumberShow.innerText = `${
-      currentNumberShow.innerText
-    } ${el.target.value.toString().replace('*', '×').replace('/', '÷')}`;
-
-    prevNum = currNum;
-    mathSign = el.target.value;
-    secondNumInProgress = true;
-    commaSignWasUsed = false;
-    secondNumActive = true;
-  }
-
-  if (
+    handleOperatorClick(el.target.value);
+  } else if (
     el.target.className === 'number' ||
     el.target.id === 'piSymbol' ||
     el.target.id === 'num0'
   ) {
     setNumber(el.target.value);
-  }
-
-  if (el.target.id === 'doubleZero' && currNum !== '0') {
+  } else if (el.target.id === 'doubleZero' && currNum !== '0') {
     setNumber(el.target.value);
-  }
-
-  if (el.target.id === 'commaSign' && commaSignWasUsed !== true) {
-    currentNumberShow.innerText += ',';
-    currNum += '.';
-    commaSignWasUsed = true;
-  }
-
-  if (el.target.id === 'clearLast' || el.target.id === 'svgClear') {
-    if (currNum.length > 1) {
-      if (currNum.split('')[currNum.length - 1] === '.') {
-        commaSignWasUsed = false;
-      }
-
-      currentNumberShow.innerText = currentNumberShow.innerText.slice(0, -1);
-      currNum = currNum.slice(0, -1);
-    } else {
-      currentNumberShow.innerText = '0';
-      currNum = '0';
-    }
-  }
-
-  if (el.target.id === 'clearAll') {
+  } else if (el.target.id === 'commaSign' && !commaSignWasUsed) {
+    handleCommaSignClick();
+  } else if (el.target.id === 'clearLast' || el.target.id === 'svgClear') {
+    handleClearLastClick();
+  } else if (el.target.id === 'clearAll') {
     clearAll();
-  }
-
-  if (el.target.id === 'equalSign') {
+  } else if (el.target.id === 'equalSign') {
     showResult();
-  }
-
-  if (el.target.id === 'percent') {
+  } else if (el.target.id === 'percent') {
     percent();
-  }
-
-  if (el.target.id === 'fraction') {
+  } else if (el.target.id === 'fraction') {
     fraction();
-  }
-
-  if (el.target.id === 'squared') {
+  } else if (el.target.id === 'squared') {
     squared();
-  }
-
-  if (el.target.id === 'symbolMathRoot') {
+  } else if (el.target.id === 'symbolMathRoot') {
     MathRoot();
   }
-});
+}
 
-document.querySelector('#hourglass').addEventListener('click', () => {
+function handleOperatorClick(value) {
+  previousNumberShow.innerText = `${currentNumberShow.innerText} ${value
+    .toString()
+    .replace('*', '×')
+    .replace('/', '÷')}`;
+  prevNum = currNum;
+  mathSign = value;
+  secondNumInProgress = true;
+  commaSignWasUsed = false;
+  secondNumActive = true;
+}
+
+function handleCommaSignClick() {
+  currentNumberShow.innerText += ',';
+  currNum += '.';
+  commaSignWasUsed = true;
+}
+
+function handleClearLastClick() {
+  if (currNum.length > 1) {
+    if (currNum.endsWith('.')) {
+      commaSignWasUsed = false;
+    }
+
+    currentNumberShow.innerText = currentNumberShow.innerText.slice(0, -1);
+    currNum = currNum.slice(0, -1);
+  } else {
+    currentNumberShow.innerText = '0';
+    currNum = '0';
+  }
+}
+
+function toggleHistorySlider() {
   calculatorHistory.classList.toggle('historySlider');
-});
-
-historyBtnClear.addEventListener('click', () => {
-  clearHistory();
-});
+}
