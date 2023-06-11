@@ -62,7 +62,7 @@ const btnObj = [
   { id: 'doubleZero', class: 'numberDoubleZero', value: '00', text: '00' },
 
   { id: 'commaSign', class: 'numberDoubleZero', text: ',' },
-  
+
   { id: 'equalSign', class: 'equal', text: '=' },
 ];
 
@@ -184,7 +184,7 @@ function clearHistory() {
   if (history.textContent === '') {
     historyBtnClear.classList.remove('active');
   }
-};
+}
 
 document.querySelector('#mainPanel').addEventListener('click', (el) => {
   if (el.target.className === 'operator') {
