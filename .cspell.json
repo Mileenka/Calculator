@@ -6,7 +6,10 @@
     "wireframe",
     "lcov",
     "Pellegrini",
-    "stackoverflow"
+    "stackoverflow",
+    "Lexend",
+    "Deca",
+    "xlink"
   ],
   "ignorePaths": [
     "node_modules/**",

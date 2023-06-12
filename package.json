@@ -7,7 +7,7 @@
     "lint:js": "eslint --max-warnings=0 --ext=.js --format=codeframe",
     "lint:ls": "ls-lint",
     "lint:md": "markdownlint --ignore node_modules --ignore docs --config ./.markdownlint.jsonc --fix ./ ",
-    "spell-check": "cspell  './**'"
+    "spell-check": "cspell  ./**"
   },
   "type": "module",
   "repository": {
@@ -31,5 +31,8 @@
     "eslint-plugin-sonarjs": "^0.9.1",
     "markdownlint-cli": "^0.28.1",
     "prettier": "^2.2.1"
+  },
+  "dependencies": {
+    "decimal.js": "^10.4.3"
   }
 }

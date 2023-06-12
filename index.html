@@ -4,10 +4,45 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./style/index.css" />
-    <title>JS starter</title>
+    <link
+      rel="icon"
+      type="image/ico"
+      sizes="32x32"
+      href="./public/calculator.ico"
+    />
+    <link rel="stylesheet" href="./style/style.css" />
+    <title>Calculator</title>
   </head>
   <body>
+    <div class="calculator">
+      <!-- Header -->
+      <header class="displayHeader">
+        <div class="menu">
+          <img class="menuIcon" src="./public/menu.svg" alt="menu" />
+        </div>
+        <p class="calcType">Standard</p>
+        <div id="hourglass" class="historyIcon">
+          <img src="./public/historyIcon.svg" alt="historyIcon" />
+        </div>
+      </header>
+      <!-- Display -->
+      <div class="display">
+        <div class="previousNumber">
+          <p id="previousNumberShow"></p>
+          <span class="mathSign"></span>
+        </div>
+        <p id="currentNumberShow" class="currentNumber">0</p>
+      </div>
+      <!-- Main panel -->
+      <div id="mainPanel" class="panel"></div>
+      <!-- History -->
+      <div id="calculatorHistory" class="calculator-history historySlider">
+        <p class="history-title">Last calculations</p>
+        <hr class="history-line" />
+        <ul class="history"></ul>
+        <button id="historyBtnClear" class="history-btn">Clear History</button>
+      </div>
+    </div>
     <script src="./src/index.js"></script>
   </body>
 </html>
